@@ -45,4 +45,4 @@ npm run dev
 ```
 
 Notas
-Este es solo el comienzo. Seguiré mejorando y aprendiendo más sobre React, Tailwind y TypeScript. ¡Cualquier sugerencia es bienvenida! 🚀
+Este es solo el comienzo. Seguiré tratando de mejorar la pagina.
