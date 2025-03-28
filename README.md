@@ -31,8 +31,10 @@ Editar
 # Clona el repositorio
 git clone https://github.com/Marekoro/Primera-pagina-en-React
 
-'''# Entra al directorio del proyecto
-cd Primera-pagina-en-React'''
+```bash
+# Entra al directorio del proyecto
+cd Primera-pagina-en-React
+```
 
 # Instala las dependencias
 npm install
