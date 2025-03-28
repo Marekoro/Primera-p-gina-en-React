@@ -7,6 +7,8 @@ Me estoy apoyando en ChatGPT para resolver dudas y mejorar mi código.
 ![image](https://github.com/user-attachments/assets/c7d94f9f-2018-4a27-8a5c-43a129706071)
 
 
+
+
  Presentación en Móviles
  
 ![image](https://github.com/user-attachments/assets/2c2bd00c-2910-4edc-a149-514169491665)
@@ -29,8 +31,8 @@ Editar
 # Clona el repositorio
 git clone https://github.com/Marekoro/Primera-pagina-en-React
 
-# Entra al directorio del proyecto
-cd Primera-pagina-en-React
+'''# Entra al directorio del proyecto
+cd Primera-pagina-en-React'''
 
 # Instala las dependencias
 npm install
