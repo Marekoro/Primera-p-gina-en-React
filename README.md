@@ -8,6 +8,7 @@ Me estoy apoyando en ChatGPT para resolver dudas y mejorar mi código.
 
 
  Presentación en Móviles
+ 
 ![image](https://github.com/user-attachments/assets/2c2bd00c-2910-4edc-a149-514169491665)
 
 
