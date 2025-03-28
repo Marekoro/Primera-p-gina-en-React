@@ -35,11 +35,14 @@ git clone https://github.com/Marekoro/Primera-pagina-en-React
 # Entra al directorio del proyecto
 cd Primera-pagina-en-React
 ```
-
+```bash
 # Instala las dependencias
 npm install
-
+```
+``` bash
 # Ejecuta el servidor de desarrollo
 npm run dev
+```
+
 Notas
 Este es solo el comienzo. Seguiré mejorando y aprendiendo más sobre React, Tailwind y TypeScript. ¡Cualquier sugerencia es bienvenida! 🚀
