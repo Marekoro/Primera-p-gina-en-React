@@ -12,7 +12,7 @@ function Home() {
   }, []);
   return (
     <div className="pt-6">
-      <img className="max-w-3/4 h-auto object-cover rounded-lg hover:shadow-lg justify-self-center" src={img} alt="Ejemplo" />
+      <img className="max-w-2/3 h-auto object-cover rounded-lg hover:shadow-lg justify-self-center" src={img} alt="Ejemplo" />
       <div>
         <h1 style={{ textAlign: "center" }}>Lorem ipsum dolor sit amet.</h1>
         <h2 style={{ textAlign: "center", padding: "10px" }}>
