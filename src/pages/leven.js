@@ -1,33 +1,76 @@
-function levenshteinDistance(s1, s2) {
-  const dp = Array(s1.length + 1)
-    .fill(null)
-    .map(() => Array(s2.length + 1).fill(0));
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
+import express from "express";
+import cors from "cors";
 
-  for (let i = 0; i <= s1.length; i++) dp[i][0] = i;
-  for (let j = 0; j <= s2.length; j++) dp[0][j] = j;
+const app = express();
+app.use(cors());
+app.use(express.json());
+const dbPath = "./liwen.db";
 
-  for (let i = 1; i <= s1.length; i++) {
-    for (let j = 1; j <= s2.length; j++) {
-      const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1, // Eliminación
-        dp[i][j - 1] + 1, // Inserción
-        dp[i - 1][j - 1] + cost // Sustitución
+let db;
+
+async function initDB() {
+  try {
+    db = await open({
+      filename: dbPath,
+      driver: sqlite3.Database,
+    });
+
+    console.log("Base de datos conectada correctamente.");
+
+    // Crear la tabla si no existe
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS bloc (
+        title TEXT,
+        content TEXT
       );
-    }
+    `);
+
+  } catch (error) {
+    console.error("Error conectando a la base de datos:", error);
   }
-
-  return dp[s1.length][s2.length];
 }
 
-function findClosestWord(input, words) {
-  return words.reduce((closest, word) =>
-    levenshteinDistance(input, word) < levenshteinDistance(input, closest)
-      ? word
-      : closest
-  );
+async function fetchData() {
+  try {
+    const users = await db.all("SELECT * FROM bloc");
+    return users;
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    return [];
+  }
 }
 
-// Prueba
-const words = ["hola", "adios", "triste", "dante"];
-console.log(findClosestWord("pinte", words)); // "adios"
+
+app.get("/blog", async (req, res) => {
+  const data = await fetchData();
+  res.json(data);
+});
+
+
+app.post("/addusers", (req, res) => {
+  const { title, body } = req.body;
+
+  if (!title || ! body) return res.status(400).json({ error: "Los campos 'title' y 'body' son obligatorios" });
+
+  console.log("Datos recibidos:", req.body);
+  db.run("INSERT INTO bloc (title, content) VALUES (?, ?)", [req.body["title"], req.body["body"]]);
+  res.send("Added")
+});
+
+// Iniciar el servidor después de conectar la base de datos
+initDB().then(() => {
+  app.listen(3000, () => {
+    console.log("Servidor corriendo en http://localhost:3000");
+  });
+});
+
+
+process.on("SIGINT", async () => {
+  if (db) {
+    await db.close();
+    console.log("Base de datos cerrada.");
+  }
+  process.exit(0);
+});
