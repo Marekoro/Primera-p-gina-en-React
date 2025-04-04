@@ -6,9 +6,20 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.json());
-const dbPath = "./liwen.db";
+const dbPath = "./nliwen.db";
 
 let db;
+
+const obtenerFechaHora = () => {
+  const ahora = new Date();
+  const dia = String(ahora.getDate()).padStart(2, '0');
+  const mes = String(ahora.getMonth() + 1).padStart(2, '0'); // +1 porque enero es 0
+  const año = ahora.getFullYear();
+  const horas = String(ahora.getHours()).padStart(2, '0');
+  const minutos = String(ahora.getMinutes()).padStart(2, '0');
+
+  return `${dia}/${mes}/${año} ${horas}:${minutos}`;
+};
 
 async function initDB() {
   try {
@@ -23,7 +34,8 @@ async function initDB() {
     await db.exec(`
       CREATE TABLE IF NOT EXISTS bloc (
         title TEXT,
-        content TEXT
+        content TEXT,
+        date TEXT
       );
     `);
 
@@ -55,7 +67,7 @@ app.post("/addusers", (req, res) => {
   if (!title || ! body) return res.status(400).json({ error: "Los campos 'title' y 'body' son obligatorios" });
 
   console.log("Datos recibidos:", req.body);
-  db.run("INSERT INTO bloc (title, content) VALUES (?, ?)", [req.body["title"], req.body["body"]]);
+  db.run("INSERT INTO bloc (title, content, date) VALUES (?, ?, ?)", [req.body["title"], req.body["body"], obtenerFechaHora()]);
   res.send("Added")
 });
 

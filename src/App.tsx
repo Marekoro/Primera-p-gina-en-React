@@ -7,6 +7,7 @@ import Misarege from "./pages/Misarege";
 import Chiste from "./pages/Chiste";
 import Bottom from "./pages/Bottom";
 import Blog from "./pages/Blog";
+import NewBlog from "./pages/NewBlog"
 import "./App.css";
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
           element={
             <>
               <Blog />
+              <div className="pl-4 pb-2">
+                <NewBlog />
+              </div>
             </>
           }
         />
