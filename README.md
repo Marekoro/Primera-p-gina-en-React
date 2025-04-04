@@ -45,3 +45,13 @@ npm run dev
 
 Notas
 Este es solo el comienzo. Seguiré tratando de mejorar la pagina.
+
+03/04/2025
+
+Página de blog conectada a una base de datos con sqlite
+
+
+![image](https://github.com/user-attachments/assets/41049395-b07d-4163-9961-430a65b39544)
+
+
+![image](https://github.com/user-attachments/assets/73dd928a-f290-4bcc-981f-4355d90c6c81)
