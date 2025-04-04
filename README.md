@@ -25,11 +25,10 @@ Me estoy apoyando en ChatGPT para resolver dudas y mejorar mi código.
  Instalación y Ejecución
 Si quieres probar este proyecto en tu máquina, sigue estos pasos:
 
-bash
-Copiar
-Editar
+```bash
 # Clona el repositorio
 git clone https://github.com/Marekoro/Primera-pagina-en-React
+```
 
 ```bash
 # Entra al directorio del proyecto
